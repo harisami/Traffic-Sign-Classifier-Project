@@ -54,7 +54,7 @@ Here is an exploratory visualization of the data set. These are histograms for e
 
 First, I converted the RGB images to grayscale since we do not really need the color component in training our model. This is implemented in the function `rgb_to_gray()`.
 
-`python
+```python
     def rgb_to_gray(images):
         # converting 3D image array to 2D array: for each pixel, taking average of red, green and
         # blue pixel values to get grayscale values
@@ -62,16 +62,16 @@ First, I converted the RGB images to grayscale since we do not really need the c
         # expanding the shape of the array by adding an axis to the axis location 3
         expanded = np.expand_dims(avg, axis=3)
         return expanded
-`
+```
 ![alt text][image4]
 
 Then I normalized the grayscale dataset as follows. This step allows for the data set to have zero mean and equal variance which will help in modelling.
 
-`python
+```python
     X_train_norm = (X_train_gray - 128) / 128
     X_valid_norm = (X_valid_gray - 128) / 128
     X_test_norm = (X_test_gray - 128) / 128
-`
+```
 
 #### 2. Model Architecture
 
@@ -106,13 +106,13 @@ My model `LeNet()` consisted of the following layers:
 | Optimizer          | AdamOptimizer                            |
 | Cross Entropy      | `tf.nn.softmax_cross_entropy_with_logits`|
 
-`python
+```python
     logits = LeNet(x)
     cross_entropy = tf.nn.softmax_cross_entropy_with_logits(labels=one_hot_y, logits=logits)
     loss_operation = tf.reduce_mean(cross_entropy)
     optimizer = tf.train.AdamOptimizer(learning_rate = rate)
     training_operation = optimizer.minimize(loss_operation)
-`
+```
 
 #### 4. Solution Approach
 
@@ -137,7 +137,7 @@ Finally, I increased the depth of convolutional outputs to 13 and 23 respectivel
 
 Here are five German traffic signs that I found on the web.
 
-`python
+```python
     files = glob.glob('./web_images_jpg/*.jpg')
     images = []
 
@@ -153,7 +153,7 @@ Here are five German traffic signs that I found on the web.
     for img in new_images:
         axs[i].imshow(img)
         i += 1
-`
+```
 
 ![alt text][image5] ![alt text][image6] ![alt text][image7] 
 ![alt text][image8] ![alt text][image9]
@@ -162,28 +162,28 @@ The images were resized to 32x32x3 for our model to operate on them. The images 
 
 #### 2. Performance on New Images
 
-`python
+```python
     ### Pre-processing
     X_new_gray = rgb_to_gray(new_images)
     y_new = [25, 31, 34, 38, 16]
     X_new_norm = (X_new_gray - 128) / 128
-`
+```
 
-`python
+```python
     with tf.Session() as sess:
         saver.restore(sess, './lenet')
         new_logits = sess.run(logits, feed_dict={x: X_new_norm, keep_rate: 1.0})
         prediction = np.argmax(new_logits, axis=1)
         print('Prediction: ', prediction)
-`
+```
 
-`python
+```python
     with tf.Session() as sess:
         saver.restore(sess, './lenet')
         new_accuracy = evaluate(X_new_norm, y_new)
         print()
         print('Accuracy = {:.3f}'.format(new_accuracy))
-`
+```
 
 Here are the results of the prediction:
 
@@ -200,7 +200,7 @@ First, I used PNG images to evaluate the performance of my model and it failed m
 
 #### 3. Model Certainty - Softmax Probabilities
 
-`python
+```python
     soft = tf.nn.softmax(logits)
     top5 = tf.nn.top_k(soft, k=5)
 
@@ -208,7 +208,7 @@ First, I used PNG images to evaluate the performance of my model and it failed m
         sess.run(tf.global_variables_initializer())
         top = sess.run(top5, feed_dict={x: X_new_norm, keep_rate: 1.0})
         print(top)
-`
+```
 
 Softmax probabilities outputs are as follows.
 
