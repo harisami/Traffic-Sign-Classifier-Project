@@ -100,6 +100,8 @@ My model `LeNet()` consisted of the following layers:
 
 #### 3. Model Training
 
+| Parameter          | Value
+|:------------------:|:----------------------------------------:|
 | Epochs             | 30                                       |
 | Batch Size         | 128                                      |
 | Learning Rate      | 0.001                                    |
