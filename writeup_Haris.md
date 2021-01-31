@@ -216,9 +216,8 @@ Softmax probabilities outputs are as follows.
 
 First image...
 
-                `[0.05923032,  0.04933028,  0.04568163,  0.04445925,  0.04149671]
+                [0.05923032,  0.04933028,  0.04568163,  0.04445925,  0.04149671]
                 indices = [37, 26,  1, 35,  6]
-                `
                 
 Second image...
 
