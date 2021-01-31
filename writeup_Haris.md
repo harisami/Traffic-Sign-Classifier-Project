@@ -100,7 +100,7 @@ My model `LeNet()` consisted of the following layers:
 
 #### 3. Model Training
 
-| Parameter          | Value
+| Parameter          | Value                                    |
 |:------------------:|:----------------------------------------:|
 | Epochs             | 30                                       |
 | Batch Size         | 128                                      |
@@ -215,8 +215,9 @@ First, I used PNG images to evaluate the performance of my model and it failed m
 Softmax probabilities outputs are as follows.
 
 First image...
-                `[0.05923032,  0.04933028,  0.04568163,  0.04445925,  0.04149671]`
-                `indices = [37, 26,  1, 35,  6]`
+                ```[0.05923032,  0.04933028,  0.04568163,  0.04445925,  0.04149671]
+                indices = [37, 26,  1, 35,  6]
+                ```
 Second image...
                 `[0.05258067,  0.04920242,  0.04734491,  0.03760579,  0.0361222]`
                 `indices = [1, 36, 26, 37, 35]`
